@@ -19,8 +19,6 @@ RUN apk add --update \
     bash \
   && rm -rf /var/cache/apk/*
 
-    #firefox \
-
 RUN gem install zapr --no-rdoc --no-ri
 RUN pip install --upgrade pip zapcli python-owasp-zap-v2.4
 
@@ -49,7 +47,6 @@ RUN curl -s https://raw.githubusercontent.com/zaproxy/zap-admin/master/ZapVersio
 	# Accept ZAP license
 	touch AcceptedLicense
 
-
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 ENV PATH $JAVA_HOME/bin:/zap/:$PATH
 ENV ZAP_PATH /zap/zap.sh
@@ -58,10 +55,10 @@ ENV ZAP_PATH /zap/zap.sh
 ENV ZAP_PORT 8080
 ENV HOME /home/zap/
 
-COPY zap* /zap/
-COPY webswing.config /zap/webswing/
-COPY policies /home/zap/.ZAP/policies/
-COPY .xinitrc /home/zap/
+COPY zaproxy/docker/zap* /zap/
+COPY zaproxy/docker/webswing.config /zap/webswing/
+COPY zaproxy/docker/policies /home/zap/.ZAP/policies/
+COPY zaproxy/docker/.xinitrc /home/zap/
 
 #Copy doesn't respect USER directives so we need to chown and to do that we need to be root
 USER root
