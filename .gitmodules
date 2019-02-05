@@ -1,0 +1,3 @@
+[submodule "zaproxy"]
+	path = zaproxy
+	url = https://github.com/zaproxy/zaproxy
